@@ -10,12 +10,10 @@ let a = setInterval(()=>{
     (tempmin < 10)? tempmin = "0" + tempmin : tempmin;
     (temphr < 10 )? temphr = "0" + temphr : temphr;
     document.querySelector('.h1').innerHTML = ` ${temphr}:${tempmin}:${tempsec} ${amorpm}`;
-    let sec = date.getSeconds()*6;
-    let minutepercent = tempmin/60;
-    let secondpercent = tempsec/360;
-    let hour = (date.getHours()*12) + (date.getHours()*minutepercent);
-    let minute = (date.getMinutes()*6) + (date.getMinutes() * secondpercent);
+    let sec = (date.getSeconds()*6) + ( 6 * date.getMilliseconds() /1000);
+    let minute = (date.getMinutes()*6) + (6 * (date.getSeconds() / 60));
+    let hour = (date.getHours()*30) + (30 * (date.getMinutes() / 60)) + (30 * (date.getSeconds() / 3600));
     document.querySelector(".second").style.transform = `rotate(${sec}deg)`;
     document.querySelector(".hour").style.transform = `rotate(${hour}deg)`;
     document.querySelector(".minute").style.transform = `rotate(${minute}deg)`;
- },100);
+ },1);
